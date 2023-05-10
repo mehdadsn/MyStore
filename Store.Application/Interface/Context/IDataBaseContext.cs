@@ -15,6 +15,9 @@ namespace Store.Application.Interface.Context
         DbSet<Role> Roles { get; set; }
         DbSet<UserRole> UserRoles { get; set; }
         DbSet<Category> Categories { get; set; }
+        DbSet<Product> Products { get; set; }
+        DbSet<ProductImages> ProductImages { get; set; }
+        DbSet<ProductFetures> ProductFetures { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

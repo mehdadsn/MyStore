@@ -1,7 +1,9 @@
 ﻿using Store.Application.Services.Products.Commands.AddNewCategory;
+using Store.Application.Services.Products.Commands.AddNewProduct;
 using Store.Application.Services.Products.Commands.DeleteCategory;
 using Store.Application.Services.Products.Commands.EditCategory;
 using Store.Application.Services.Products.Queries.GetCategories;
+using Store.Application.Services.Products.Queries.GetCategoriesForNewProduct;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +18,7 @@ namespace Store.Application.Interface.FacadPatterns
         IGetCategoriesService GetCategoriesService { get; }
         IDeleteCategoryService DeleteCategoryService { get; }
         IEditCategoryService EditCategoryService { get; }
+        IAddNewProductService AddNewProductService { get; }
+        IGetCategoreisForNewProductService GetCategoreisForNewProductService { get; }
     }
 }
