@@ -36,7 +36,7 @@
     <div class="wrapper">
 
 
-        <div data-active-color="white" data-background-color="black" data-image="~/AdminTemplate/app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
+        <div data-active-color="white" data-background-color="black" data-image="/AdminTemplate/app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
             <div class="sidebar-header">
                 <div class="logo clearfix">
                     <a href="index-2.html" class="logo-text float-right">
@@ -46,10 +46,7 @@
             </div>
             <div class="sidebar-content">
                 <div class="nav-container">
-                    <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-                        <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
-                        </li>
+                    <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">                      
 
                         <li class="has-sub nav-item open">
                             <a href="#"><i class="icon-users"></i><span data-il8n class="menu-title">مدیریت کاربران</span></a>
@@ -70,6 +67,17 @@
                                 </li>
                                 <li>
                                     <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item open">
+                            <a href="#"><i class="icon-crop"></i><span data-il8n class="menu-title">محصولات</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="~/admin/product/" class="menu-item">محصولات</a>
+                                </li>
+                                <li>
+                                    <a href="~/admin/product/AddNewProduct" class="menu-item">افزودن محصول جدید</a>
                                 </li>
                             </ul>
                         </li>

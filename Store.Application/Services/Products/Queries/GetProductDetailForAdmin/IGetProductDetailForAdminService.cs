@@ -40,6 +40,7 @@ namespace Store.Application.Services.Products.Queries.GetProductDetailForAdmin
                     Name = product.Name,
                     Brand = product.Brand,
                     Category = GetCategory(product.Category),
+                    CategoryId = product.CategoryId,
                     Description = product.Description,
                     Displayed = product.Displayed,
                     Inventory = product.Inventory,
@@ -75,6 +76,7 @@ namespace Store.Application.Services.Products.Queries.GetProductDetailForAdmin
         public long Id {  get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
+        public long CategoryId { get; set; }
         public string Brand { get; set; }
         public string Description { get; set; }
         public float Price { get; set; }

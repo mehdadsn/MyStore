@@ -1,7 +1,9 @@
 ﻿using Store.Application.Services.Products.Commands.AddNewCategory;
 using Store.Application.Services.Products.Commands.AddNewProduct;
 using Store.Application.Services.Products.Commands.DeleteCategory;
+using Store.Application.Services.Products.Commands.DeleteProduct;
 using Store.Application.Services.Products.Commands.EditCategory;
+using Store.Application.Services.Products.Commands.EditProduct;
 using Store.Application.Services.Products.Queries.GetCategories;
 using Store.Application.Services.Products.Queries.GetCategoriesForNewProduct;
 using Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
@@ -27,5 +29,7 @@ namespace Store.Application.Interface.FacadPatterns
         //</summary>
         IGetProductForAdminService GetProductForAdminService { get; }
         IGetProductDetailForAdminService GetProductDetailForAdminService { get; }
+        IDeleteProductService DeleteProductService { get; }
+        IEditProductService EditProductService { get; }
     }
 }

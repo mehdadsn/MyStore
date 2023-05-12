@@ -1,8 +1,14 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Store.Application.Services.Products.Queries.GetProductDetailForAdmin
+@using Store.Common.Dto;
+
+@model ResultDto<ProductDetailForAdminDto>
+
 @{
-    ViewData["Title"] = "AddNewProduct";
+    ViewData["Title"] = "Edit Product";
     Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
 }
+
 
 <section class="basic-elements">
     <div class="row">
@@ -26,52 +32,50 @@
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput">نام محصول </label>
-                                            <input type="text" class="form-control" id="Name">
+                                            <input type="text" class="form-control" id="Name" value="@Model.Data.Name">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput"> برند </label>
-                                            <input type="text" class="form-control" id="Brand">
+                                            <input type="text" class="form-control" id="Brand" value="@Model.Data.Brand">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput"> قیمت</label>
-                                            <input type="number" class="form-control" id="Price">
+                                            <input type="number" class="form-control" id="Price" value="@Model.Data.Price">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput"> تعداد موجودی</label>
-                                            <input type="number" class="form-control" id="Inventory">
+                                            <input type="number" class="form-control" id="Inventory" value="@Model.Data.Inventory">
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput">نمایش داده شود؟ </label>
-                                            <input type="checkbox" class="form-control" id="Displayed">
-                                        </fieldset>
+                                            <input type="checkbox" class="form-control" id="Displayed" @if (@Model.Data.Displayed)
+                                            {
+                                                @Html.Raw("checked")
+                                            }">
+                                            </fieldset>
                                     </div>
-                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput">تصاویر </label>
-                                            <input type="file" multiple class="form-control" accept="image/*" id="Images">
-                                        </fieldset>
-                                    </div>
+                                    
 
 
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput">دسته بندی </label>
-                                     
-                                            <select class="form-control" id="Category"   asp-items="@ViewBag.Categories"></select>
+
+                                            <select class="form-control" id="Category" asp-items="@ViewBag.Categories" ></select>
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput"> توضیحات</label>
-                                            <textarea id="Description" class="form-control " rows="5"></textarea>
+                                            <textarea id="Description" class="form-control " rows="5">@Model.Data.Description</textarea>
                                         </fieldset>
                                     </div>
 
@@ -119,17 +123,61 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                            @foreach (var feature in Model.Data.Features)
+                                            {
+                                                <tr>
+                                                    <td> @feature.DisplayName </td>
+                                                    <td> @feature.Value </td>
+                                                    <td> <a class="idFeatures btnDelete btn btn-danger"> حذف </a> </td> 
+                                                </tr>
+                                            }
+                                        </tbody>
                                     </table>
 
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput">تصاویر </label>
+                                            <input type="file" multiple class="form-control" accept="image/*" id="Images" name="files[]" multiple>
+                                        </fieldset>
 
+                                    </div>
+                                    <div id="ProductImages">
+                                        @foreach (var item in Model.Data.Images)
+                                        {
+                                            <span class="pip">
+                                                @*<figure class="col-xl-6 col-lg-4 col-sm-6 col-12">*@
+                                                    
+                                                    <a target="_blank" href="~/@item.Src">
+                                                        <img width="300" height="300" class="img-thumbnail img-fluid" src="~/@item.Src">
+                                                    </a>
+                                                    <span class="idFeatures btnDelete btn btn-danger remove"> حذف </span>
+                                                @*</figure>*@
+                                            </span>
+                                            <hr />
 
+                                        }
+                                    </div>
+                                    
+                                    <script>
+                                        
+                                        //const Images = document.getElementById("Images")
+                                        //Images.onchange = evt => {
+                                        //    const [file] = Images.files
+                                        //    var url;
+                                        //    if (file) {
+                                        //        var src = URL.createObjectURL(file);
+                                        //        $('#ProductImages').append("<img src =" + src + "alt = 'your image' >");
+                                        //        blah.src = URL.createObjectURL(file);
+                                        //    }
+                                        //}
+                                    </script>
 
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <br />
-                                            <a id="btnAddProduct" class="btn btn-success col-md-12"> افزودن محصول  </a>
+                                            <a id="btnEditProduct" class="btn btn-success col-md-12"> اعمال تغییرات  </a>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -146,13 +194,55 @@
 
 
 @section Scripts
-{
+    {
 
     <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Sweetalert2/sweetalert2.min.js"></script>
 
 
     <script>
+        $(document).ready(function () {
+            $("#Category option[value='@Model.Data.CategoryId']").prop("selected", "selected");
+            if ("@Model.Data.Displayed" == "True"){
+                $("#Displayed").prop('checked', true);
+
+            }
+        });
+        $(document).ready(function () {
+            if (window.File && window.FileList && window.FileReader) {
+                $("#Images").on("change", function (e) {
+                    var files = e.target.files,
+                        filesLength = files.length;
+                    for (var i = 0; i < filesLength; i++) {
+                        var f = files[i]
+                        var fileReader = new FileReader();
+                        fileReader.onload = (function (e) {
+                            var file = e.target;
+                            var appendtext = "<span class=\"pip\">" +
+                                "<img src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                "<br/><span class=\"idFeatures btnDelete btn btn-danger remove\">حذف</span>" +
+                                "</span>";
+                            $("#ProductImages").append(appendtext);
+                            $(".remove").click(function () {
+                                $(this).parent(".pip").remove();
+                            });
+
+                        });
+                        fileReader.readAsDataURL(f);
+                    }
+                    console.log(files);
+                });
+            } else {
+                alert("Your browser doesn't support to File API")
+            }
+        });
+        //const Images = document.getElementById("Images")
+        //Images.onchange = evt => {
+        //    const [file] = Images.files
+        //    if (file) {
+        //        $('#ProductImages').append("<img src =" + URL.createObjectURL(file) + "alt = 'your image' >");
+        //    }
+        //}
 
         $("#btnAddFeatures").on("click", function () {
 
@@ -179,11 +269,12 @@
 
 
 
-        $('#btnAddProduct').on('click', function () {
+        $('#btnEditProduct').on('click', function () {
 
             var data = new FormData();
- 
+
             //دریافت مقادیر از تکس باکس ها و....
+            data.append("ProductId", @Model.Data.Id);
             data.append("Name", $("#Name").val());
             data.append("Brand", $("#Brand").val());
             data.append("Price", $("#Price").val());
@@ -224,7 +315,7 @@
             // ارسال اطلاعات بع کنترلر
             var ajaxRequest = $.ajax({
                 type: "POST",
-                url: "AddNewProduct",
+                url: "EditProduct",
                 contentType: false,
                 processData: false,
                 data: data,
@@ -262,6 +353,7 @@
                 // Do other operation
             });
         });
+
     </script>
 }
 

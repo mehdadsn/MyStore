@@ -25,7 +25,7 @@ namespace Store.Application.Services.Products.Queries.GetProductForAdmin
         public ResultDto<ProductForAdminDto> Execute(int page = 1, int pageSize = 20)
         {
             int rowCount = 0;
-            var products = _context.Products.Include(p => p.Category).ToPaged(page, pageSize, out rowCount).Select(p => new ProductsFormAdminListDto
+            var products = _context.Products.Include(p => p.Category).Where(p => p.IsRemoved == false).ToPaged(page, pageSize, out rowCount).Select(p => new ProductsFormAdminListDto
             {
                 Id = p.Id,
                 Name = p.Name,

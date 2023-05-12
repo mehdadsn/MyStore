@@ -24,11 +24,15 @@ namespace Store.Application.Services.Products.Queries.GetCategoriesForNewProduct
         }
         public ResultDto<List<AllCategorisDto>> Execute()
         {
-            var categories = _context.Categories.Include(p => p.ParentCategory).Where(p => p.ParentCategoryId != null).ToList().Select(p => new AllCategorisDto()
-            {
-                Id = p.Id,
-                Name = $"{p.ParentCategory.Name} - {p.Name}"
-            }).ToList();
+            var categories = _context.Categories
+                .Include(p => p.ParentCategory)
+                .Where(p => p.ParentCategoryId != null)
+                .ToList()
+                .Select(p => new AllCategorisDto()
+                {
+                 Id = p.Id,
+                 Name = $"{p.ParentCategory.Name} - {p.Name}"
+                }).ToList();
 
             return new ResultDto<List<AllCategorisDto>>
             {

@@ -4,7 +4,9 @@ using Store.Application.Interface.FacadPatterns;
 using Store.Application.Services.Products.Commands.AddNewCategory;
 using Store.Application.Services.Products.Commands.AddNewProduct;
 using Store.Application.Services.Products.Commands.DeleteCategory;
+using Store.Application.Services.Products.Commands.DeleteProduct;
 using Store.Application.Services.Products.Commands.EditCategory;
+using Store.Application.Services.Products.Commands.EditProduct;
 using Store.Application.Services.Products.Queries.GetCategories;
 using Store.Application.Services.Products.Queries.GetCategoriesForNewProduct;
 using Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
@@ -96,6 +98,24 @@ namespace Store.Application.Services.Products.FacadPattern
             get
             {
                 return _getProductDetailForAdminService = _getProductDetailForAdminService ?? new GetProductDetailForAdmin(_context);
+            }
+        }
+
+        private IDeleteProductService _deleteProductService;
+        public IDeleteProductService DeleteProductService
+        {
+            get
+            {
+                return _deleteProductService = _deleteProductService ?? new DeleteProductService (_context);
+            }
+        }
+
+        private IEditProductService _editProductService;
+        public IEditProductService EditProductService
+        {
+            get
+            {
+                return _editProductService = _editProductService ?? new EditProductService (_context, _environment);
             }
         }
 
