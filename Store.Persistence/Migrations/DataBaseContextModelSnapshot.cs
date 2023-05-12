@@ -107,7 +107,7 @@ namespace Store.Persistence.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Store.Domain.Entities.Products.ProductFetures", b =>
+            modelBuilder.Entity("Store.Domain.Entities.Products.ProductFeatures", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,7 +142,7 @@ namespace Store.Persistence.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductFetures");
+                    b.ToTable("ProductFeatures");
                 });
 
             modelBuilder.Entity("Store.Domain.Entities.Products.ProductImages", b =>
@@ -329,10 +329,10 @@ namespace Store.Persistence.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Store.Domain.Entities.Products.ProductFetures", b =>
+            modelBuilder.Entity("Store.Domain.Entities.Products.ProductFeatures", b =>
                 {
                     b.HasOne("Store.Domain.Entities.Products.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductFeatures")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -377,6 +377,8 @@ namespace Store.Persistence.Migrations
 
             modelBuilder.Entity("Store.Domain.Entities.Products.Product", b =>
                 {
+                    b.Navigation("ProductFeatures");
+
                     b.Navigation("ProductImages");
                 });
 

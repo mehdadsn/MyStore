@@ -14,9 +14,14 @@ namespace Endpoint.Site.Areas.Admin.Controllers
         {
             _prodoctFacad = productFacad;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page =1, int pageSize = 20)
         {
-            return View();
+            return View(_prodoctFacad.GetProductForAdminService.Execute(page, pageSize).Data);
+        }
+        
+        public IActionResult Detail(long Id)
+        {
+            return View(_prodoctFacad.GetProductDetailForAdminService.Execute(Id).Data);
         }
 
         [HttpGet]

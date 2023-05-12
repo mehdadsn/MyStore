@@ -2,7 +2,7 @@
 
 namespace Store.Domain.Entities.Products
 {
-    public class ProductFetures : BaseEntity
+    public class ProductFeatures : BaseEntity
     {
         public virtual Product Product { get; set; }
         public long ProductId { get; set; }

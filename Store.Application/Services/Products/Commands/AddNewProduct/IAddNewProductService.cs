@@ -58,17 +58,17 @@ namespace Store.Application.Services.Products.Commands.AddNewProduct
                 _context.ProductImages.AddRange(productImages);
 
 
-                List<ProductFetures> productFetures = new List<ProductFetures>();
+                List<ProductFeatures> productFetures = new List<ProductFeatures>();
                 foreach (var item in request.Features)
                 {
-                    productFetures.Add(new ProductFetures()
+                    productFetures.Add(new ProductFeatures()
                     {
                         DisplayName = item.DisplayName,
                         value = item.Value,
                         Product = product,
                     });
                 }
-                _context.ProductFetures.AddRange(productFetures);
+                _context.ProductFeatures.AddRange(productFetures);
                 _context.SaveChanges();
 
                 return new ResultDto

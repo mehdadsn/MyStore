@@ -7,6 +7,8 @@ using Store.Application.Services.Products.Commands.DeleteCategory;
 using Store.Application.Services.Products.Commands.EditCategory;
 using Store.Application.Services.Products.Queries.GetCategories;
 using Store.Application.Services.Products.Queries.GetCategoriesForNewProduct;
+using Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Store.Application.Services.Products.Queries.GetProductForAdmin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,6 +78,24 @@ namespace Store.Application.Services.Products.FacadPattern
             get
             {
                 return _getCategoreisForNewProductService = _getCategoreisForNewProductService ?? new GetCategoreisForNewProductService (_context);
+            }
+        }
+
+        private IGetProductForAdminService _getProductForAdminService;
+        public IGetProductForAdminService GetProductForAdminService
+        {
+            get
+            {
+                return _getProductForAdminService = _getProductForAdminService ?? new GetProductForAdminService (_context);
+            }
+        }
+
+        private IGetProductDetailForAdminService _getProductDetailForAdminService;
+        public IGetProductDetailForAdminService GetProductDetailForAdminService
+        {
+            get
+            {
+                return _getProductDetailForAdminService = _getProductDetailForAdminService ?? new GetProductDetailForAdmin(_context);
             }
         }
 

@@ -24,7 +24,7 @@ namespace Store.Persistence.Context
         public DbSet<Category> Categories { get ; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImages> ProductImages { get; set; }
-        public DbSet<ProductFetures>ProductFetures { get; set; }
+        public DbSet<ProductFeatures>ProductFeatures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

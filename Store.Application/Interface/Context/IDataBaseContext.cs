@@ -17,7 +17,7 @@ namespace Store.Application.Interface.Context
         DbSet<Category> Categories { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<ProductImages> ProductImages { get; set; }
-        DbSet<ProductFetures> ProductFetures { get; set; }
+        DbSet<ProductFeatures> ProductFeatures { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
