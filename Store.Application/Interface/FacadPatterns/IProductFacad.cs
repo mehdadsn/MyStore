@@ -7,7 +7,9 @@ using Store.Application.Services.Products.Commands.EditProduct;
 using Store.Application.Services.Products.Queries.GetCategories;
 using Store.Application.Services.Products.Queries.GetCategoriesForNewProduct;
 using Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Store.Application.Services.Products.Queries.GetProductDetailForSite;
 using Store.Application.Services.Products.Queries.GetProductForAdmin;
+using Store.Application.Services.Products.Queries.GetProductsForSite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,5 +33,7 @@ namespace Store.Application.Interface.FacadPatterns
         IGetProductDetailForAdminService GetProductDetailForAdminService { get; }
         IDeleteProductService DeleteProductService { get; }
         IEditProductService EditProductService { get; }
+        IGetProductsForSite GetProductsForSite { get; }
+        IGetProductDetailForSite GetProductDetailForSite { get; }
     }
 }

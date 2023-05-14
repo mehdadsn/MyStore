@@ -10,7 +10,9 @@ using Store.Application.Services.Products.Commands.EditProduct;
 using Store.Application.Services.Products.Queries.GetCategories;
 using Store.Application.Services.Products.Queries.GetCategoriesForNewProduct;
 using Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Store.Application.Services.Products.Queries.GetProductDetailForSite;
 using Store.Application.Services.Products.Queries.GetProductForAdmin;
+using Store.Application.Services.Products.Queries.GetProductsForSite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,6 +118,24 @@ namespace Store.Application.Services.Products.FacadPattern
             get
             {
                 return _editProductService = _editProductService ?? new EditProductService (_context, _environment);
+            }
+        }
+
+        private IGetProductsForSite _getProductsForSite;
+        public IGetProductsForSite GetProductsForSite
+        {
+            get
+            {
+                return _getProductsForSite = _getProductsForSite ?? new GetProductsForSite (_context);
+            }
+        }
+
+        private IGetProductDetailForSite _getProductDetailForSite;
+        public IGetProductDetailForSite GetProductDetailForSite
+        {
+            get
+            {
+                return _getProductDetailForSite = _getProductDetailForSite ?? new GetProductDetailForSite (_context);
             }
         }
 
