@@ -56,10 +56,7 @@
                                     <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
                                             <label for="basicInput">نمایش داده شود؟ </label>
-                                            <input type="checkbox" class="form-control" id="Displayed" @if (@Model.Data.Displayed)
-                                            {
-                                                @Html.Raw("checked")
-                                            }">
+                                            <input type="checkbox" class="form-control" id="Displayed" >
                                             </fieldset>
                                     </div>
                                     
@@ -70,6 +67,7 @@
                                             <label for="basicInput">دسته بندی </label>
 
                                             <select class="form-control" id="Category" asp-items="@ViewBag.Categories" ></select>
+
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
@@ -205,7 +203,6 @@
             $("#Category option[value='@Model.Data.CategoryId']").prop("selected", "selected");
             if ("@Model.Data.Displayed" == "True"){
                 $("#Displayed").prop('checked', true);
-
             }
         });
         $(document).ready(function () {

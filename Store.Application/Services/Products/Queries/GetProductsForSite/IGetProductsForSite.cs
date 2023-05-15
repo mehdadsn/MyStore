@@ -12,7 +12,7 @@ namespace Store.Application.Services.Products.Queries.GetProductsForSite
 {
     public interface IGetProductsForSite
     {
-        ResultDto<ResultProductsForSiteDto> Execute(int page);
+        ResultDto<ResultProductsForSiteDto> Execute(string searchKey, int page, long? CategoryId = null);
     }
 
     public class GetProductsForSite : IGetProductsForSite
@@ -22,10 +22,21 @@ namespace Store.Application.Services.Products.Queries.GetProductsForSite
         {
             _context = context;
         }
-        public ResultDto<ResultProductsForSiteDto> Execute(int page)           
+        public ResultDto<ResultProductsForSiteDto> Execute(string searchKey, int page, long? CategoryId = null)           
         {
             int totalRow = 0;
-            var products = _context.Products.Include(p => p.ProductImages).ToPaged(page, 5, out totalRow);
+            var productsQuery = _context.Products
+                .Include(p => p.ProductImages).AsQueryable();
+
+            if(CategoryId != null)
+            {
+                productsQuery = productsQuery.Where(p => p.CategoryId == CategoryId || p.Category.ParentCategoryId == CategoryId).AsQueryable();
+            }
+            if (!string.IsNullOrWhiteSpace(searchKey))
+            {
+                productsQuery = productsQuery.Where(p => p.Name.Contains(searchKey) || p.Brand.Contains(searchKey)).AsQueryable();
+            }
+            var products = productsQuery.ToPaged(page, 5, out totalRow);
 
             Random rd = new Random();
 

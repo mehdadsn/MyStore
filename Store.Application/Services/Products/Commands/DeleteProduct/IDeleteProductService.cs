@@ -33,7 +33,11 @@ namespace Store.Application.Services.Products.Commands.DeleteProduct
             }
             product.IsRemoved = true;
             _context.SaveChanges();
-            throw new NotImplementedException();
+            return new ResultDto()
+            {
+                IsSuccess = true,
+                Message = "با موفقیت حذف شد"
+            };
         }
     }
 }

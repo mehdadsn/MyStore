@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Store.Application.Interface.Context;
 using Store.Application.Interface.FacadPatterns;
+using Store.Application.Services.Common.Queries.GetCategoryForSearchBar;
+using Store.Application.Services.Common.Queries.GetMenuItems;
 using Store.Application.Services.Products.FacadPattern;
 using Store.Application.Services.Users.Commands.EditUser;
 using Store.Application.Services.Users.Commands.RegisterUser;
@@ -28,6 +30,10 @@ builder.Services.AddScoped<IUserLoginService, UserLoginService>();
 
 //facad inject
 builder.Services.AddScoped<IProductFacad, ProductFacad>();
+
+//------
+builder.Services.AddScoped<IGetMenuItemsServices, GetMenuItemsServices>();
+builder.Services.AddScoped<IGetCategoryServiceForSearchBar, GetCategoryServiceForSearchBar>();
 
 builder.Services.AddAuthentication(options =>
 {

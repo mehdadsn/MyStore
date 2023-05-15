@@ -129,7 +129,7 @@ namespace Store.Application.Services.Products.Commands.EditProduct
         {
             if(file != null)
             {
-                string folder = $@"images\ProductImages";
+                string folder = $@"images\ProductImages\";
                 var uploadsRootFolder = Path.Combine(_environment.WebRootPath, folder);
                 if (Directory.Exists(uploadsRootFolder))
                 {
