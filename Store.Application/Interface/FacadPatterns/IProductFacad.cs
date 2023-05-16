@@ -26,9 +26,9 @@ namespace Store.Application.Interface.FacadPatterns
         IEditCategoryService EditCategoryService { get; }
         IAddNewProductService AddNewProductService { get; }
         IGetCategoreisForNewProductService GetCategoreisForNewProductService { get; }
-        //<summary>
-        //دریافت لیست محصولات برای پنل ادمین
-        //</summary>
+        ///<summary>
+        ///دریافت لیست محصولات برای پنل ادمین
+        ///</summary>
         IGetProductForAdminService GetProductForAdminService { get; }
         IGetProductDetailForAdminService GetProductDetailForAdminService { get; }
         IDeleteProductService DeleteProductService { get; }
