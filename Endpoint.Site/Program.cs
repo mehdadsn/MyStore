@@ -3,7 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Store.Application.Interface.Context;
 using Store.Application.Interface.FacadPatterns;
 using Store.Application.Services.Common.Queries.GetCategoryForSearchBar;
+using Store.Application.Services.Common.Queries.GetHomepageimages;
 using Store.Application.Services.Common.Queries.GetMenuItems;
+using Store.Application.Services.Common.Queries.GetSlider;
+using Store.Application.Services.HomePage.AddHomepageImages;
+using Store.Application.Services.HomePage.AddNewSliderService;
 using Store.Application.Services.Products.FacadPattern;
 using Store.Application.Services.Users.Commands.EditUser;
 using Store.Application.Services.Users.Commands.RegisterUser;
@@ -28,12 +32,20 @@ builder.Services.AddScoped<IUserStatusChangeService, UserStatusChangeService>();
 builder.Services.AddScoped<IEditUserService, EditUserService>();
 builder.Services.AddScoped<IUserLoginService, UserLoginService>();
 
+
 //facad inject
 builder.Services.AddScoped<IProductFacad, ProductFacad>();
 
 //------
 builder.Services.AddScoped<IGetMenuItemsServices, GetMenuItemsServices>();
 builder.Services.AddScoped<IGetCategoryServiceForSearchBar, GetCategoryServiceForSearchBar>();
+builder.Services.AddScoped<IAddNewSliderService, AddNewSliderService>();
+builder.Services.AddScoped<IGetSliderService, GetSliderService>();
+builder.Services.AddScoped<IAddHomepageImagesService, AddHomepageImagesService>();
+builder.Services.AddScoped<IGetHomepageImagesService, GetHomepageImagesService>();
+
+
+
 
 builder.Services.AddAuthentication(options =>
 {
