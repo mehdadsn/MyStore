@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Store.Application.Interface.Context;
 using Store.Application.Interface.FacadPatterns;
+using Store.Application.Services.Carts;
 using Store.Application.Services.Common.Queries.GetCategoryForSearchBar;
 using Store.Application.Services.Common.Queries.GetHomepageimages;
 using Store.Application.Services.Common.Queries.GetMenuItems;
@@ -44,6 +45,8 @@ builder.Services.AddScoped<IGetSliderService, GetSliderService>();
 builder.Services.AddScoped<IAddHomepageImagesService, AddHomepageImagesService>();
 builder.Services.AddScoped<IGetHomepageImagesService, GetHomepageImagesService>();
 
+//Cart
+builder.Services.AddScoped<ICartService, CartService>();
 
 
 
