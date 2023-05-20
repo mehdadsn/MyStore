@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Store.Application.Services.Users.Commands.EditUser;
 using Store.Application.Services.Users.Commands.RegisterUser;
@@ -6,10 +7,13 @@ using Store.Application.Services.Users.Commands.RemoveUser;
 using Store.Application.Services.Users.Commands.UserStatusChange;
 using Store.Application.Services.Users.Queries.GetRows;
 using Store.Application.Services.Users.Queries.GetUsers;
+using Store.Common.Role;
 
 namespace Endpoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = ConstRoles.Admin)]
+    
     public class UsersController : Controller
     {
         private readonly IGetUsersService _getUsersService;

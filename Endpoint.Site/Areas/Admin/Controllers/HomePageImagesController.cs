@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Store.Application.Services.HomePage.AddHomepageImages;
+using Store.Common.Role;
 using Store.Domain.Entities.HomePage;
 
 namespace Endpoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = ConstRoles.Admin)]
+
     public class HomePageImagesController : Controller
     {
         private readonly IAddHomepageImagesService _addHomepageImagesService;

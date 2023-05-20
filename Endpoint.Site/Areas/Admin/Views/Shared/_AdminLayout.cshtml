@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Endpoint.Site.Utilities;
+@{
     Layout = null;
 }
 
@@ -47,29 +48,53 @@
             <div class="sidebar-content">
                 <div class="nav-container">
                     <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">                      
-
+                        
+                        
+                        @if(ClaimUtility.GetRoles(User).Where(p=>p=="Admin").Count()>0){
+                            <li class="has-sub nav-item open">
+                                <a href="#"><i class="icon-users"></i><span data-il8n class="menu-title">مدیریت کاربران</span></a>
+                                <ul class="menu-content">
+                                    <li class="active">
+                                        <a href="~/admin/users/index" class="menu-item">لیست کاربران</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="~/admin/users/create" class="menu-item">*افزودن کاربر جدید</a>
+                                    </li>
+                                </ul>
+                            </li>
+                           
+                        }
+                        @if (ClaimUtility.GetRoles(User).Where(p => p == "Admin" || p=="Operator").Count() > 0)
+                        {
+                            <li class="has-sub nav-item open">
+                                <a href="#"><i class="icon-crop"></i><span data-il8n class="menu-title">دسته بندی ها</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/categories/" class="menu-item">دسته بندی ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        
+                        }
+                        
                         <li class="has-sub nav-item open">
-                            <a href="#"><i class="icon-users"></i><span data-il8n class="menu-title">مدیریت کاربران</span></a>
+                            <a href="#"><i class="icon-users"></i><span data-il8n class="menu-title">مدیریت سفارشات</span></a>
                             <ul class="menu-content">
                                 <li class="active">
-                                    <a href="~/admin/users/index" class="menu-item">لیست کاربران</a>
+                                    <a href="~/admin/order/index?orderState=Processing" class="menu-item">در حال پردازش</a>
                                 </li>
                                 <li class="active">
-                                    <a href="~/admin/users/create" class="menu-item">*افزودن کاربر جدید</a>
+                                    <a href="~/admin/order/index?orderState=Delivered" class="menu-item">تحویل شده ها</a>
+                                </li>
+                                <li class="active">
+                                    <a href="~/admin/order/index?orderState=Canceled" class="menu-item">لغو شده ها</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="has-sub nav-item open">
-                            <a href="#"><i class="icon-crop"></i><span data-il8n class="menu-title">دسته بندی ها</span></a>
-                            <ul class="menu-content">
-                                <li>
-                                    <a href="~/admin/categories/" class="menu-item">دسته بندی ها</a>
-                                </li>
-                                <li>
-                                    <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید</a>
-                                </li>
-                            </ul>
-                        </li>
+                        
                         <li class="has-sub nav-item open">
                             <a href="#"><i class="icon-crop"></i><span data-il8n class="menu-title">محصولات</span></a>
                             <ul class="menu-content">
@@ -79,6 +104,14 @@
                                 <li>
                                     <a href="~/admin/product/AddNewProduct" class="menu-item">افزودن محصول جدید</a>
                                 </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item open">
+                            <a href="#"><i class="icon-crop"></i><span data-il8n class="menu-title">فاکتور ها</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="~/admin/payrequest/" class="menu-item">لیست فاکتور ها</a>
+                                </li>                             
                             </ul>
                         </li>
                     </ul>

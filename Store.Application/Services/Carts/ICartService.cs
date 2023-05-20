@@ -101,7 +101,18 @@ namespace Store.Application.Services.Carts
                 .Where(p => p.BrowserId == browserId && p.Finished==false)
                 .OrderByDescending(p=>p.Id)
                 .FirstOrDefault();
-
+            if(cart == null)
+            {
+                return new ResultDto<CartDto>()
+                {
+                    Data = new CartDto()
+                    {
+                        CartItems = new List<CartItemDto>(),
+                        ProductCount = 0,
+                        TotalPrice = 0,
+                    }
+                };
+            }
             if(userId != null)
             {
                 var user = _context.Users.Find(userId);
@@ -113,6 +124,7 @@ namespace Store.Application.Services.Carts
             {
                 Data = new CartDto()
                 {
+                    CartId = cart.Id,
                     ProductCount = cart.CartItems.Count,
                     TotalPrice = cart.CartItems.Sum(p => p.Price * p.Count),
                     CartItems = cart.CartItems.Select(p => new CartItemDto()
@@ -168,6 +180,7 @@ namespace Store.Application.Services.Carts
 
     public class CartDto
     {
+        public long CartId { get; set; }
         public int ProductCount { get; set; }
         public float TotalPrice { get; set; }
         public List<CartItemDto> CartItems { get; set; }

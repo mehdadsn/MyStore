@@ -65,10 +65,10 @@ namespace Store.Application.Services.Users.Commands.UserLogin
                 };
             }
 
-            var roles = "";
+            List<string> roles = new List<string>();
             foreach(var item in user.UserRoles)
             {
-                roles += $"{item.Role.Name}";
+                roles.Add(item.Role.Name);
             }
 
             return new ResultDto<ResultUserLoginDto>()
@@ -87,7 +87,7 @@ namespace Store.Application.Services.Users.Commands.UserLogin
 
     public class ResultUserLoginDto 
     { 
-        public string Roles { get; set; }
+        public List<string> Roles { get; set; }
         public long UserId { get; set; }
         public string Name { get; set; }
     }

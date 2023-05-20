@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Store.Application.Interface.FacadPatterns;
 using Store.Application.Services.Products.Commands.AddNewProduct;
 using Store.Application.Services.Products.Commands.EditProduct;
+using Store.Common.Role;
 using Store.Persistence.Migrations;
 
 namespace Endpoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = $"{ConstRoles.Admin},{ConstRoles.Operator}")]
 
     public class ProductController : Controller
     {

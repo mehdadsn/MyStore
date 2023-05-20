@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Entities.Commons;
+using Store.Domain.Entities.Orders;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -16,5 +17,7 @@ namespace Store.Domain.Entities.Users
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 }
